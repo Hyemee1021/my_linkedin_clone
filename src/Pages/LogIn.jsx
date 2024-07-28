@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import logo from "../assets/linkedinLogo.png";
 
+import { login, logout } from "../slices/userSlice";
 import { auth } from "../firebase"; // Import the auth object from firebase.js
-import { createUserWithEmailAndPassword } from "firebase/auth";
-
+import {
+  signOut,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { useDispatch } from "react-redux";
 export const LogIn = () => {
   const [name, setName] = useState("");
   console.log(name);
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch();
 
   const handleRegister = (e) => {
     e.preventDefault(); // Prevent the default form submission
@@ -19,6 +26,13 @@ export const LogIn = () => {
         // Signed up
         const user = userCredential.user;
         // ...
+        dispatch(
+          login({
+            email: user.email,
+            uid: user.uid,
+            displayName: name,
+          })
+        );
         alert("Account is created successfully.");
         setEmail("");
         setName("");
@@ -31,6 +45,47 @@ export const LogIn = () => {
         // ..
       });
   };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+        dispatch(
+          login({
+            email: user.email,
+            uid: user.uid,
+            displayName: user.displayName,
+          })
+        );
+        alert("Login is successful.");
+        setEmail("");
+        setName("");
+        setPassword("");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(`Login failed: ${errorMessage}`);
+      });
+  };
+
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        dispatch(logout());
+        alert("Logged out successfully.");
+      })
+      .catch((error) => {
+        // An error happened.
+
+        alert(`Error logging out: ${error.message}`);
+      });
+  };
   return (
     <div className="flex flex-col justify-center items-center  min-h-screen ">
       <div className="w-full max-w-sm">
@@ -41,7 +96,7 @@ export const LogIn = () => {
           <input
             value={name}
             type="text"
-            placeholder="Full Name"
+            placeholder="Full Name (required if regitering) "
             className="bg-white cursor-pointer p-2 rounded-md  border-gray-300"
             onChange={(e) => {
               setName(e.target.value);
@@ -65,7 +120,10 @@ export const LogIn = () => {
             }}
             value={password}
           />
-          <button className="w-full max-w-sm bg-blue-300 rounded-md p-2">
+          <button
+            onClick={handleLogin}
+            className="w-full max-w-sm bg-blue-300 rounded-md p-2"
+          >
             Log In
           </button>
         </form>
