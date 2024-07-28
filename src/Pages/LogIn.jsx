@@ -18,7 +18,7 @@ export const LogIn = () => {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-  const select = useSelector();
+
   const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault(); // Prevent the default form submission

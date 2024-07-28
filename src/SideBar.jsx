@@ -1,12 +1,13 @@
 import { Avatar } from "@mui/material";
 import React from "react";
 
+import background from "./assets/background.jpg";
 export const SideBar = () => {
   return (
     <div>
       <div className="side_top">
         <div>
-          <img src="" alt="" className="" />
+          <img src={background} alt="" className="  rounded-md" />
           <Avatar />
           <p>email</p>
         </div>
