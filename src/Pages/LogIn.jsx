@@ -8,7 +8,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
 export const LogIn = () => {
   const [name, setName] = useState("");
   console.log(name);
@@ -17,7 +18,8 @@ export const LogIn = () => {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-
+  const select = useSelector();
+  const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault(); // Prevent the default form submission
 
@@ -37,6 +39,7 @@ export const LogIn = () => {
         setEmail("");
         setName("");
         setPassword("");
+        navigate("/");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -65,6 +68,7 @@ export const LogIn = () => {
         setEmail("");
         setName("");
         setPassword("");
+        navigate("/");
       })
       .catch((error) => {
         const errorCode = error.code;
