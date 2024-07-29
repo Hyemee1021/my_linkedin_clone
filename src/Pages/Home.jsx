@@ -3,14 +3,14 @@ import { SideBar } from "../SideBar";
 
 const Home = () => {
   return (
-    <div className="flex flex-col md:flex-row min-h-screen  justify-center items-center  gap-3 p-3">
-      <div className="w-full md:w-1/4 bg-white rounded-md ">
+    <div className="flex flex-col md:flex-row  h-[80vh]  justify-center  items-start  gap-3 p-3">
+      <div className="w-full md:w-1/5 bg-white rounded-md ">
         <SideBar />
       </div>
-      <div className="w-full md:w-2/4 bg-white">
+      <div className="w-full md:w-3/5 bg-white">
         <h1>here is feed </h1>
       </div>
-      <div className="w-full md:w-1/4 bg-white p-4">
+      <div className="w-full md:w-1/5 bg-white p-4">
         <h1>here is news </h1>
       </div>
     </div>
