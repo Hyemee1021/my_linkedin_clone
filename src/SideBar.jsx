@@ -4,23 +4,24 @@ import React from "react";
 import background from "./assets/background.jpg";
 export const SideBar = () => {
   return (
-    <div>
-      <div className="side_top">
-        <div className="relative h-40 border">
-          {/* Set a fixed height for the parent div */}
-          <img
-            src={background}
-            alt="background pic"
-            className="absolute inset-0 h-1/2 w-full object-cover 
+    <div className=" bg-white">
+      <div className="side_top  ">
+        <div className=" relative  ">
+          <div className=" h-20 overflow-hidden ">
+            {/* Set a fixed height for the parent div */}
+            <img
+              src={background}
+              alt="background pic"
+              className="w-full h-full object-cover
            rounded-t-md"
-          />
-          <div className="absolute inset-x-0 bottom-1/3 flex justify-center">
+            />
+          </div>
+
+          <div className="absolute top-1/2   left-1/2 -translate-x-1/2  ">
             <Avatar />
           </div>
 
-          <p className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center">
-            email
-          </p>
+          <p className="  pt-8 text-center  pb-2 ">email</p>
         </div>
         {/* top 1/2 */}
         <div className="border py-3 px-2 mb-2 ">
