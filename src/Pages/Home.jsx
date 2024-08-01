@@ -3,7 +3,7 @@ import { SideBar } from "../SideBar";
 
 const Home = () => {
   return (
-    <div className="flex  flex-col md:flex-row   justify-center  items-start  gap-3  px-5 mt-10 md:mt-8">
+    <div className="flex  flex-col md:flex-row   justify-center  items-start  gap-3  px-10 mt-10 md:mt-8">
       <div className="w-full md:w-1/5  rounded-md ">
         <SideBar />
       </div>

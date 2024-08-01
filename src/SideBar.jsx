@@ -4,8 +4,8 @@ import React from "react";
 import background from "./assets/background.jpg";
 export const SideBar = () => {
   return (
-    <div className=" bg-white">
-      <div className="side_top  ">
+    <div className="">
+      <div className="side_top bg-white rounded-md ">
         <div className=" relative  ">
           <div className=" h-20 overflow-hidden ">
             {/* Set a fixed height for the parent div */}
@@ -21,10 +21,10 @@ export const SideBar = () => {
             <Avatar />
           </div>
 
-          <p className="  pt-8 text-center  pb-2 ">email</p>
+          <p className="  pt-8  text-center  pb-2 ">email</p>
         </div>
         {/* top 1/2 */}
-        <div className="border py-3 px-2 mb-2 ">
+        <div className="rounded-b-md border py-3 px-2 mb-2 ">
           <div className=" px-5 flex justify-between ">
             <span>Who viewed you</span>
             <span>2345</span>
@@ -36,7 +36,8 @@ export const SideBar = () => {
         </div>
       </div>
       {/* end of  side top */}
-      <div className="side_bottom">
+      <div className="bg-white rounded-md side_bottom flex flex-col gap-2 text-center md:text-start p-3">
+        <h2 className="font-semibold">Recent</h2>
         <p>#JavaScript</p>
         <p>#React</p>
         <p>#frontend</p>
