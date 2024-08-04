@@ -7,14 +7,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "./slices/userSlice";
 
 import { login } from "./slices/userSlice";
+import { logout } from "./slices/userSlice";
 import { auth } from "./firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
 
+  //listen authentication state
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+    const unsubscribe = onAuthStateChanged(auth, (userAuth) => {
       if (userAuth) {
         dispatch(
           login({
