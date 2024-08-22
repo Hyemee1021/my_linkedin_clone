@@ -2,7 +2,16 @@ import { Avatar } from "@mui/material";
 import React from "react";
 
 import background from "./assets/background.jpg";
+import { useSelector } from "react-redux";
+import { selectUser } from "./slices/userSlice";
 export const SideBar = () => {
+  const user = useSelector(selectUser);
+  console.log(user);
+
+  const getfirtChar = (email) => {
+    return email[0].toUpperCase();
+  };
+
   return (
     <div className="">
       <div className="side_top bg-white rounded-md ">
@@ -21,7 +30,9 @@ export const SideBar = () => {
             <Avatar />
           </div>
 
-          <p className="  pt-8  text-center  pb-2 ">email</p>
+          <p className="  pt-8  text-center  pb-2 ">
+            {user ? getfirtChar(user.email) : email}
+          </p>
         </div>
         {/* top 1/2 */}
         <div className="rounded-b-md border py-3 px-2 mb-2 ">

@@ -1,39 +1,17 @@
 import { useEffect, useState } from "react";
 import { Header } from "./Components/Header";
 import { LogIn } from "./Pages/LogIn";
+import { Post } from "./Post";
 import Home from "./Pages/Home";
 import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "./slices/userSlice";
-
-import { login } from "./slices/userSlice";
-import { logout } from "./slices/userSlice";
-import { auth } from "./firebase";
-import { onAuthStateChanged } from "firebase/auth";
-
+import { useSelector } from "react-redux";
+import { useAuth } from "./hooks/useAuth";
 function App() {
-  const dispatch = useDispatch();
+  //listen authentication state
+  useAuth();
   const user = useSelector(selectUser);
 
-  //listen authentication state
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (userAuth) => {
-      if (userAuth) {
-        dispatch(
-          login({
-            email: userAuth.email,
-            uid: userAuth.uid,
-            displayName: userAuth.displayName,
-          })
-        );
-      } else {
-        dispatch(logout());
-      }
-    });
-
-    return () => unsubscribe();
-  }, [dispatch]);
-  console.log("user: ", user);
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-slate-100">
@@ -46,6 +24,7 @@ function App() {
           />
 
           <Route path="/login" element={<LogIn />} />
+          <Route path="/post" element={<Post />} />
         </Routes>
       </div>
     </BrowserRouter>
